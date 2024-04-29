@@ -37,6 +37,15 @@ dependencies:
   cupertino_icons: ^1.0.6
   provider: any
   shared_preferences: ^2.2.3
+  shimmer: ^3.0.0
+  persistent_bottom_nav_bar: ^5.0.2
+  animated_bottom_navigation_bar: ^1.3.3
+  # bottom_navy_bar: ^6.0.0
+  #Added later
+  # toastification: ^1.2.1
+  # validators: ^3.0.0
+  # email_validator: ^2.1.17
+  # string_validator: ^1.0.2
 
 dev_dependencies:
   flutter_test:
