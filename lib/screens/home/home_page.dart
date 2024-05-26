@@ -2,9 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:shoptex/models/card_swiper_model.dart';
+import 'package:shoptex/models/category_model.dart';
 import 'package:shoptex/screens/home/card_slider.dart';
 import 'package:shoptex/screens/home/category_item.dart';
 import 'package:shoptex/screens/home/latest_item.dart';
+import 'package:shoptex/screens/home/product_detail.dart';
+import 'package:shoptex/utils/constants.dart';
 import 'package:shoptex/utils/strings.dart';
 import 'package:shoptex/widgets/img_src_widget.dart';
 import 'package:shoptex/widgets/shimmer_text.dart';
@@ -64,6 +67,23 @@ class _HomeState extends State<Home> {
                   itemBuilder: (BuildContext context, int index) {
                     return LatestItem(
                       addToCart: () {},
+                      nextPage: () {
+                        AppConstants.push(
+                          context: context,
+                          widget: ProductDetail(
+                            description: "Description" * 20,
+                            addToCart: () {
+                              //Add to Cart
+                            },
+                            addToFavourite: () {
+                              //Add to Wishlist
+                            },
+                            imgUrl: AppStrings.shopOrder,
+                            name: 'IPhone XR',
+                            price: 34.69,
+                          ),
+                        );
+                      },
                       favourite: () {},
                       imgUrl: '',
                       width: width,
@@ -94,12 +114,17 @@ class _HomeState extends State<Home> {
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 5,
-                    mainAxisSpacing: 5,
+                    mainAxisSpacing: 7,
                   ),
-                  itemCount: 15,
+                  itemCount: categoryItems.length,
+                  padding: EdgeInsets.zero,
+                  shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, int index) {
-                    return const CategoryItem();
+                    return CategoryItem(
+                      imgUrl: categoryItems[index].imgUrl,
+                      categoryName: categoryItems[index].categoryName,
+                    );
                   },
                 ),
               )

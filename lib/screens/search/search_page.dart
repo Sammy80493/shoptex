@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:shoptex/screens/search/product_grid_item.dart';
+import 'package:shoptex/utils/colors.dart';
 import 'package:shoptex/utils/strings.dart';
+import 'package:shoptex/widgets/icon_btn_widget.dart';
 import 'package:shoptex/widgets/img_src_widget.dart';
 import 'package:shoptex/widgets/text_widget.dart';
 import 'package:shoptex/widgets/textform_widget.dart';
@@ -16,12 +18,14 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  final TextEditingController searchController = TextEditingController();
-  final FocusNode focusNode = FocusNode();
+  late TextEditingController searchController;
+  late FocusNode focusNode;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    searchController = TextEditingController();
+    focusNode = FocusNode();
     searchController.clear();
     focusNode.unfocus();
   }
@@ -30,7 +34,6 @@ class _SearchPageState extends State<SearchPage> {
   void dispose() {
     searchController.dispose();
     focusNode.dispose();
-
     super.dispose();
   }
 
@@ -70,11 +73,14 @@ class _SearchPageState extends State<SearchPage> {
                   print(searchController.text);
                 },
                 prefixIcon: BoxIcons.bx_search,
-                suffixIcon: Icons.clear,
-                onTap: () {
-                  searchController.clear();
-                  focusNode.unfocus();
-                },
+                widget: IconBtnWidget(
+                  iconData: Icons.clear,
+                  onPressed: () {
+                    searchController.clear();
+                    focusNode.unfocus();
+                  },
+                  color: AppColor.red,
+                ),
               ),
             ),
             Expanded(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shoptex/utils/colors.dart';
 
 class AppElevatedBtnTheme {
   AppElevatedBtnTheme._();
@@ -7,7 +8,7 @@ class AppElevatedBtnTheme {
       ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       elevation: 0,
-      // backgroundColor: AppColor.red,
+      backgroundColor: AppColor.darkPrimary,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
     ),
   );
@@ -17,7 +18,7 @@ class AppElevatedBtnTheme {
     style: ElevatedButton.styleFrom(
       elevation: 0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      // backgroundColor: AppColor.red,
+      backgroundColor: AppColor.darkPrimary,
     ),
   );
 }

@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:shoptex/providers/theme_provider.dart';
+import 'package:shoptex/screens/auth/login.dart';
+import 'package:shoptex/screens/profile/recently_view.dart';
+import 'package:shoptex/screens/profile/wishlist.dart';
+import 'package:shoptex/utils/constants.dart';
 import 'package:shoptex/utils/strings.dart';
 import 'package:shoptex/widgets/alertdialog_widget.dart';
 import 'package:shoptex/widgets/elevated_icon_btn.dart';
@@ -24,7 +28,6 @@ class _SettingPageState extends State<SettingPage> {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-
     final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
@@ -101,7 +104,10 @@ class _SettingPageState extends State<SettingPage> {
                 ),
                 ListTileWidget(
                   tileTxt: 'Wishlist',
-                  onTap: () {},
+                  onTap: () {
+                    AppConstants.push(
+                        context: context, widget: const Wishlist());
+                  },
                   image: AppStrings.wwishlist1Svg,
                 ),
                 SizedBox(
@@ -109,7 +115,12 @@ class _SettingPageState extends State<SettingPage> {
                 ),
                 ListTileWidget(
                   tileTxt: 'Viewed Recently',
-                  onTap: () {},
+                  onTap: () {
+                    AppConstants.push(
+                      context: context,
+                      widget: const RecentlyView(),
+                    );
+                  },
                   image: AppStrings.folderRecentSvg,
                 ),
                 SizedBox(
@@ -117,7 +128,12 @@ class _SettingPageState extends State<SettingPage> {
                 ),
                 ListTileWidget(
                   tileTxt: 'Address',
-                  onTap: () {},
+                  onTap: () {
+                    AppConstants.push(
+                      context: context,
+                      widget: const Login(),
+                    );
+                  },
                   image: AppStrings.address3Svg,
                 ),
               ],
@@ -167,6 +183,9 @@ class _SettingPageState extends State<SettingPage> {
                     const EdgeInsets.symmetric(horizontal: 50, vertical: 5),
                 iconData: BoxIcons.bx_log_out,
                 color: Theme.of(context).colorScheme.secondary,
+                onPressed: () {
+                  //Log out
+                },
               )
             ],
           ),

@@ -1,6 +1,7 @@
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shoptex/utils/colors.dart';
+import 'package:shoptex/utils/constants.dart';
 import 'package:shoptex/widgets/icon_btn_widget.dart';
 import 'package:shoptex/widgets/text_widget.dart';
 
@@ -36,8 +37,8 @@ class ProductGridItem extends StatelessWidget {
               imageUrl: imgUrl,
               width: width,
               height: height * 0.2,
-              errorWidget: const Center(
-                child: CircularProgressIndicator.adaptive(),
+              errorWidget: Center(
+                child: AppConstants.loadingCircular,
               ),
               boxFit: BoxFit.contain,
             ),

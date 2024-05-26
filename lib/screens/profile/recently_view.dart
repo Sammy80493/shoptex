@@ -2,46 +2,41 @@
 
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:provider/provider.dart';
-import 'package:shoptex/providers/cart_provider.dart';
-import 'package:shoptex/screens/cart/cart_list_item.dart';
+import 'package:shoptex/screens/search/product_grid_item.dart';
 import 'package:shoptex/utils/colors.dart';
 import 'package:shoptex/utils/strings.dart';
-import 'package:shoptex/widgets/bottomsheet_widget.dart';
 import 'package:shoptex/widgets/empty_item_widget.dart';
 import 'package:shoptex/widgets/icon_btn_widget.dart';
 import 'package:shoptex/widgets/img_src_widget.dart';
 import 'package:shoptex/widgets/text_widget.dart';
 
-class CartPage extends StatefulWidget {
-  const CartPage({super.key});
+class RecentlyView extends StatefulWidget {
+  const RecentlyView({super.key});
 
   @override
-  _CartPageState createState() => _CartPageState();
+  _RecentlyViewState createState() => _RecentlyViewState();
 }
 
-class _CartPageState extends State<CartPage> {
-  bool isEmpty = false;
-  late int cartItemNumer;
+class _RecentlyViewState extends State<RecentlyView> {
+  bool isEmpty = true;
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-    final cartProvider = Provider.of<CartProvider>(context);
     return isEmpty
         ? Scaffold(
             body: EmptyItemWidget(
               imgTxt: AppStrings.shopOrder,
               onPressed: () {},
-              titleTxt: 'Your Cart is Empty',
-              bodyTxt:
-                  'Looks like your cart is empty\nAdd somthing and enjoy our service',
+              titleTxt: 'There is no recently view item ',
+              bodyTxt: 'Looks like there is no recent item viewed',
             ),
           )
         : Scaffold(
+            resizeToAvoidBottomInset: false,
             appBar: AppBar(
               title: TextWidget(
-                  txt: 'Cart(5)',
+                  txt: 'Recently View(${5})',
                   textStyle: Theme.of(context).textTheme.labelMedium),
               leading: Padding(
                 padding: const EdgeInsets.all(5.0),
@@ -59,31 +54,33 @@ class _CartPageState extends State<CartPage> {
               ],
             ),
             body: Column(
-              children: [
+              children: <Widget>[
                 Expanded(
-                  child: ListView.builder(
-                    itemCount: 10,
+                  child: GridView.builder(
                     shrinkWrap: true,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 15),
-                    itemBuilder: (BuildContext context, int index) {
-                      return cart_list_item(
-                        height: height,
-                        width: width,
-                        cartProvider: cartProvider,
+                    keyboardDismissBehavior:
+                        ScrollViewKeyboardDismissBehavior.onDrag,
+                    itemCount: 20,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio: 2 / 3.17,
+                            crossAxisSpacing: 5,
+                            mainAxisSpacing: 5),
+                    padding: const EdgeInsets.all(10),
+                    itemBuilder: (context, index) {
+                      return ProductGridItem(
                         imgUrl: '',
-                        price: 54.80,
-                        qty: 10,
-                        delete: () {},
                         favourite: () {},
-                        name: 'SSD Hard Drive',
+                        nextPage: () {},
+                        width: width,
+                        height: height,
+                        name: 'SSD Hard 265gb',
+                        price: 5.06,
                       );
                     },
                   ),
                 ),
-                BottomSheetWidget(
-                  height: height,
-                )
               ],
             ),
           );

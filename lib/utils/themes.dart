@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoptex/utils/colors.dart';
 import 'package:shoptex/utils/sub_theme/app_theme.dart';
+import 'package:shoptex/utils/sub_theme/bottom_nav_theme.dart';
 import 'package:shoptex/utils/sub_theme/dialog_theme.dart';
 import 'package:shoptex/utils/sub_theme/elevated_btn_theme.dart';
 import 'package:shoptex/utils/sub_theme/text_theme.dart';
@@ -10,6 +11,7 @@ class AppTheme {
 
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
+    bottomNavigationBarTheme: BottomNavTheme.lightBottomNavTheme,
     useMaterial3: true,
     colorScheme: const ColorScheme.light(
       primary: Colors.black,
@@ -25,7 +27,9 @@ class AppTheme {
     iconTheme: const IconThemeData(color: Colors.black),
     inputDecorationTheme: InputDecorationTheme(
       border: OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.black.withOpacity(0.3)),
+        borderSide: BorderSide(
+          color: Colors.black.withOpacity(0.3),
+        ),
       ),
       isDense: true,
       errorBorder: const OutlineInputBorder(),
@@ -37,10 +41,11 @@ class AppTheme {
     brightness: Brightness.dark,
     textTheme: AppTextTheme.darkTextTheme,
     useMaterial3: true,
-    colorScheme: ColorScheme.dark(
+    bottomNavigationBarTheme: BottomNavTheme.darkBottomNavTheme,
+    colorScheme: const ColorScheme.dark(
       primary: Colors.white,
       error: AppColor.red,
-      onSecondaryContainer: Colors.black.withOpacity(0.1),
+      onSecondaryContainer: Colors.black,
       secondary: AppColor.red,
     ),
     appBarTheme: CustomAppBarTheme.darkAppBarTheme,

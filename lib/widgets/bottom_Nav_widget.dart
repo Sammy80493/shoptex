@@ -29,7 +29,6 @@ class BottomNavBarWidget extends StatelessWidget {
       currentIndex: screensIndex,
       elevation: 0,
       onTap: onItemSelected,
-      backgroundColor: Theme.of(context).colorScheme.background,
       type: BottomNavigationBarType.shifting,
     );
   }

@@ -9,10 +9,14 @@ import 'package:shoptex/widgets/text_widget.dart';
 class EmptyItemWidget extends StatelessWidget {
   Function()? onPressed;
   final String imgTxt;
+  final String titleTxt;
+  final String bodyTxt;
   EmptyItemWidget({
     super.key,
     this.onPressed,
     required this.imgTxt,
+    required this.titleTxt,
+    required this.bodyTxt,
   });
 
   @override
@@ -42,15 +46,14 @@ class EmptyItemWidget extends StatelessWidget {
             height: height * 0.03,
           ),
           TextWidget(
-              txt: 'Your Cart is Empty',
+              txt: titleTxt,
               textStyle: Theme.of(context).textTheme.titleMedium),
           SizedBox(
             height: height * 0.02,
           ),
           TextWidget(
             textAlign: TextAlign.center,
-            txt:
-                'Looks like your cart is empty\nAdd somthing and enjoy our service',
+            txt: bodyTxt,
             textStyle: Theme.of(context).textTheme.titleSmall!.copyWith(),
           ),
           SizedBox(
@@ -58,6 +61,11 @@ class EmptyItemWidget extends StatelessWidget {
           ),
           ElevatedBtnWidget(
             onPressed: onPressed,
+            textStyle: Theme.of(context)
+                .textTheme
+                .titleSmall!
+                .copyWith(fontWeight: FontWeight.bold),
+            edgeInsetsGeometry: EdgeInsets.symmetric(horizontal: width * 0.1),
             btnTitle: 'Shop Now',
             color: AppColor.darkPrimary,
           )
